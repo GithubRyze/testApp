@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_ppj">
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="24dp"
+        android:text="dad"
+        android:textSize="22sp"
+        android:textColor="@android:color/holo_red_light"
+        android:id="@+id/tv_sendData"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp" />
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="56dp"
+        android:text="daddadfdf"
+        android:textSize="22sp"
+        android:textColor="@android:color/holo_red_light"
+        android:id="@+id/tv_getData"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp" />
+    <LinearLayout
+        android:weightSum="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <ImageView
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:src="@drawable/lg_ppj"/>
+        <RelativeLayout
+            android:layout_weight="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:textColor="@color/pressure_color"
+                android:id="@+id/tv_level"
+                android:text="@string/pressure_level"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/layout_level"
+                android:layout_below="@+id/tv_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/checkbox_1"
+                    android:button="@drawable/pressure_level"
+                    android:background="@null"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:clickable="false"/>
+
+                <CheckBox
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/checkbox_1"
+                    android:button="@drawable/pressure_level_two"
+                    android:background="@null"
+                    android:layout_width="36dp"
+                    android:layout_height="44dp"
+                    android:clickable="false"/>
+                <CheckBox
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/checkbox_4"
+                    android:button="@drawable/pressure_level_two"
+                    android:background="@null"
+                    android:layout_width="36dp"
+                    android:layout_height="44dp"
+                    android:clickable="false"/>
+
+                <CheckBox
+                    android:layout_centerInParent="true"
+                    android:id="@+id/checkbox_4"
+                    android:button="@drawable/pressure_level"
+                    android:background="@null"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:clickable="false"/>
+                <CheckBox
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/checkbox_4"
+                    android:button="@drawable/pressure_level_two"
+                    android:background="@null"
+                    android:layout_width="36dp"
+                    android:layout_height="44dp"
+                    android:clickable="false"/>
+              <CheckBox
+                     android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/checkbox_7"
+                    android:button="@drawable/pressure_level_two"
+                    android:background="@null"
+                    android:layout_width="36dp"
+                    android:layout_height="44dp"
+                    android:clickable="false"/>
+                <CheckBox
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/checkbox_7"
+                    android:button="@drawable/pressure_level"
+                    android:background="@null"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:clickable="false"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_below="@+id/layout_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/level_color"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="20sp"
+                    android:text="@string/plush"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/level_color"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20sp"
+                    android:text="@string/mid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/level_color"
+                    android:layout_alignParentRight="true"
+                    android:textSize="20sp"
+                    android:text="@string/firm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <ImageView
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/img_ppj_separator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="2.8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:layout_width="380dp"
+                android:layout_height="320dp"
+                android:background="@drawable/bg_ppj_panel">
+              <Button
+                    android:id="@+id/bt_left"
+                    android:layout_centerVertical="true"
+
+                    android:layout_toLeftOf="@+id/bt_center"
+                    android:layout_width="100dp"
+                    android:layout_height="130dp" />
+            <Button
+                android:id="@+id/bt_up"
+                android:layout_centerHorizontal="true"
+
+                android:layout_above="@+id/bt_center"
+                android:layout_width="120dp"
+                android:layout_height="90dp" />
+            <Button
+                android:layout_centerInParent="true"
+                android:id="@+id/bt_center"
+
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+                <Button
+                    android:id="@+id/bt_right"
+                    android:layout_centerVertical="true"
+
+                    android:layout_toRightOf="@+id/bt_center"
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"/>
+                <Button
+                    android:id="@+id/bt_down"
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_below="@+id/bt_center"
+                    android:layout_width="120dp"
+                    android:layout_height="90dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

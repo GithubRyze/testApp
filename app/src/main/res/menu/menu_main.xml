@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ryzeliu.bluetoothapp.MainActivity">
+    <item
+        android:id="@+id/menu_stop"
+        android:orderInCategory="100"
+        android:title="@string/action_stop"/>
+    <item
+        android:id="@+id/menu_scan"
+        android:orderInCategory="100"
+        android:title="@string/action_scan"/>
+    <item
+        android:id="@+id/menu_refresh"
+        android:orderInCategory="100"
+        android:title="@string/action_refresh"/>
+</menu>
