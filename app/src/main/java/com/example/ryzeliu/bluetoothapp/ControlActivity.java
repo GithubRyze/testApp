@@ -24,6 +24,7 @@ import com.example.ryzeliu.services.BluetoothCallback;
 import com.example.ryzeliu.utils.LogUtil;
 import com.example.ryzeliu.utils.Utils;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,12 +41,10 @@ public class ControlActivity extends AppCompatActivity{
     private BluetoothCallback mBluetoothCallback;
     private int mStatus;
     private byte[] cmd;
-    private View layout_progress;
     private ProgressDialog mDialog;
     public static final String LEVEL_KEY = "PRESSURE_LEVEL";
     public static final int GET_PRESSURE_LEVEL = 1;
     private RelativeLayout mRelativeLayout;
-    private int temLevel;
     public static final int GAS_RELEASE = 7;
     public static final int GAS_CHARGING = 8;
     public static final int GAS_CHARGING_OR_RELEASE_FINISH = 9;
@@ -62,8 +61,6 @@ public class ControlActivity extends AppCompatActivity{
     private final int RIGHT = 3;
     private final int LEFT = 4;
     private int side = 0;
-    private long time_1 = 0;
-    private long time_2 = 0;
     private int count = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,6 +81,13 @@ public class ControlActivity extends AppCompatActivity{
                 mStatus = BluetoothProfile.STATE_CONNECTING;
                 mDialog.show();
             }
+        }
+
+        ProcessBuilder pr = new ProcessBuilder();
+        try {
+            pr.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -139,7 +143,7 @@ public class ControlActivity extends AppCompatActivity{
 
     }
     /**
-     * 得到自定义的progressDialog
+     * progressDialog
      * @param context
      * @return
      */
@@ -160,18 +164,21 @@ public class ControlActivity extends AppCompatActivity{
                 setConnectedButtonBackground();
 
             }
-           /* else if (msg.what == BluetoothProfile.STATE_DISCONNECTED){
+            else if (msg.what == BluetoothProfile.STATE_DISCONNECTED){
                 mStatus = BluetoothProfile.STATE_DISCONNECTED;
                 Toast.makeText(getApplicationContext(),device.getName()+" was disconnected",Toast.LENGTH_LONG).show();
-                setButtonBackground();
-            }*/
+                setUnconnectedButtonBackground();
+                setLightOff();
+            }
             else if (msg.what == GET_PRESSURE_LEVEL){
                 int level = msg.getData().getInt(LEVEL_KEY);
                 LogUtil.d(TAG, "GAS  LEVEL:" + level);
+                if (bed_status == GAS_CHARGING || bed_status == GAS_RELEASE)
+                    return;
                 showPressureLevel(level);
                 temp = level;
             }
-            else if (msg.what == GAS_CHARGING){
+       /*     else if (msg.what == GAS_CHARGING){
                 LogUtil.d(TAG, "BED  CHARGING");
                 setGasChargingLight();
             }else if (msg.what == GAS_CHARGING_OR_RELEASE_FINISH){
@@ -185,7 +192,7 @@ public class ControlActivity extends AppCompatActivity{
             }else if (msg.what == GAS_LIGHT_ON){
                 //TODO
                 setGasLightOn();
-            }
+            }*/
             else if (msg.what == RIGHT){
                 side = RIGHT;
                 bt_left.setBackgroundResource(R.drawable.bt_ppj_left_glow);
@@ -221,10 +228,10 @@ public class ControlActivity extends AppCompatActivity{
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             int id = v.getId();
-            if (id == R.id.bt_left && side == LEFT)
+         /*   if (id == R.id.bt_left && side == LEFT)
                 return false;
             if (id == R.id.bt_right && side == RIGHT)
-                return false;
+                return false;*/
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     LogUtil.d(TAG, "side :"+side);
@@ -249,12 +256,12 @@ public class ControlActivity extends AppCompatActivity{
                                 LogUtil.d(TAG,"View LONG CLICK EVENT UP");
                                 cmd = setCommand(id, false);
                                 mBluetoothCallback.writeCharacteristic(cmd);
-                                msg = mHandler.obtainMessage();
-                                msg.what = GAS_CHARGING_OR_RELEASE_FINISH;
-                                bed_status = GAS_CHARGING_OR_RELEASE_FINISH;
-                                msg.sendToTarget();
-                                timer.purge();
-                                task.cancel();
+                             //   msg = mHandler.obtainMessage();
+                            //    msg.what = GAS_CHARGING_OR_RELEASE_FINISH;
+                            //    bed_status = GAS_CHARGING_OR_RELEASE_FINISH;
+                             //   msg.sendToTarget();
+                              //  timer.purge();
+                              // task.cancel();
                                 down = false;
                             }else {
                                 if (count == 0) {
@@ -319,7 +326,7 @@ public class ControlActivity extends AppCompatActivity{
             cmd = setCommand(v.getId(), true);
             mBluetoothCallback.writeCharacteristic(cmd);
             down = true;
-            showLight(v);
+          //  showLight(v);
             count = 0;
             return false;
         }
@@ -369,8 +376,7 @@ public class ControlActivity extends AppCompatActivity{
 }
 
     public void showPressureLevel(int level){
-        if (bed_status == GAS_CHARGING && bed_status == GAS_RELEASE)
-            return;
+
         switch (level){
             case 0:
                 setLight(1,true);

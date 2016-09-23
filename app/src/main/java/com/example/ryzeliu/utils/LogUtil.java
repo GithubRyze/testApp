@@ -4,6 +4,7 @@ import android.util.Log;
 
 /**
  * Created by ryze.liu on 5/12/2016.
+ * for app log
  */
 public class LogUtil {
 
@@ -13,10 +14,10 @@ public class LogUtil {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
+    public static boolean isDebug = true;// print log or not
     private static final String TAG = "BluetoothApp";
 
-    // 下面四个是默认tag的函数
+    //print default tag log
     public static void i(String msg)
     {
         if (isDebug)
@@ -41,7 +42,7 @@ public class LogUtil {
             Log.v(TAG, msg);
     }
 
-    // 下面是传入自定义tag的函数
+    //print log tag by self
     public static void i(String tag, String msg)
     {
         if (isDebug)

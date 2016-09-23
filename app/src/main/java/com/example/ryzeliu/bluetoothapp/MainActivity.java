@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * start scan the remote devices
+     * @param enable
+     */
 
     private void scanLeDevice(final boolean enable) {
         if (enable) {
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         scanLeDevice(false);
         super.onDestroy();
     }
+    //on some android scan bluetooth devices need location permission
     final int REQUEST_FINE_LOCATION = 1;
     private String permission = Manifest.permission.ACCESS_COARSE_LOCATION;
     private boolean mayRequestLocation() {
@@ -227,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
         }
     };
+
     private ScanCallback mScanCallBack = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, final ScanResult result) {
@@ -252,6 +258,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBatchScanResults(results);
         }
     };
+    /**
+     * callback when new devices was found
+     */
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
                 @Override
                 public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {

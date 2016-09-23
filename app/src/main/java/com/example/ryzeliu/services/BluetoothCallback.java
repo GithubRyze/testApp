@@ -56,8 +56,8 @@ public class BluetoothCallback extends BluetoothGattCallback {
           /*  if (mRequest != null){
                 mRequest.destroy();
                 mRequest = null;
-            }
-            mHandler.obtainMessage(BluetoothProfile.STATE_DISCONNECTED, BluetoothProfile.STATE_DISCONNECTED,-1).sendToTarget();*/
+            }*/
+            mHandler.obtainMessage(BluetoothProfile.STATE_DISCONNECTED, BluetoothProfile.STATE_DISCONNECTED,-1).sendToTarget();
         }
     }
 
@@ -73,38 +73,21 @@ public class BluetoothCallback extends BluetoothGattCallback {
     public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
         super.onCharacteristicWrite(gatt, characteristic, status);
 
-       /* LogUtil.d(TAG, "onCharacteristicWrite ---->"+status);
-        StringBuilder stringBuilder = null;
-         final byte[] data = characteristic.getValue();
-        if (data != null && data.length > 0) {
-            stringBuilder = new StringBuilder(data.length);
-            for (byte byteChar : data)
-                stringBuilder.append(String.format("%02X ", byteChar));
-        }
-        LogUtil.d(TAG, "onCharacteristicWrite::" + stringBuilder.toString());*/
+         LogUtil.d(TAG, "onCharacteristicWrite ---->" + status);
+
     }
 
     @Override
     public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-        //super.onCharacteristicRead(gatt, characteristic, status);
-       // LogUtil.d(TAG, "onCharacteristicRead" + new String(characteristic.getValue()));
-       // LogUtil.d(TAG, characteristic.getUuid().toString());
-       /* if (status == BluetoothGatt.GATT_SUCCESS)
-            LogUtil.d(TAG, "onCharacteristicRead ---->"+status);
-        StringBuilder stringBuilder = null;
-        final byte[] data = characteristic.getValue();
-        if (data != null && data.length > 0) {
-            stringBuilder = new StringBuilder(data.length);
-            for (byte byteChar : data)
-                stringBuilder.append(String.format("%02X ", byteChar));
+        super.onCharacteristicRead(gatt, characteristic, status);
+        LogUtil.d(TAG, "onCharacteristicRead ---->" + status);
         }
-        LogUtil.d(TAG, "onCharacteristicRead::" + stringBuilder.toString());*/
-        }
+
 
     @Override
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
        // super.onServicesDiscovered(gatt, status);
-        //LogUtil.d(TAG, "onServicesDiscovered" + status);
+        LogUtil.d(TAG, "onServicesDiscovered" + status);
         if (status == BluetoothGatt.GATT_SUCCESS){
              setService(gatt);
           //  byte[] requestSide ={(byte)0x97,(byte)0x30};
@@ -301,11 +284,11 @@ public class BluetoothCallback extends BluetoothGattCallback {
               else{
                   return;
               }
-               if (temLevel != pressure_level) {
+               //if (temLevel != pressure_level) {
                     temLevel = pressure_level;
                     msg.setData(bundle);
                     msg.sendToTarget();
-               }
+               //}
             }
 
     /**
